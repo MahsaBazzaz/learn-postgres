@@ -8,6 +8,8 @@ exports.seed = function(knex) {
         {firstName: 'mahsa', lastName: 'bazzaz', age: 22},
         {firstName: 'mh', lastName: 'nd', age: 21},
         {firstName: 'maryam', lastName: 'oo', age: 46},
+        {firstName: 'morteza', lastName: 'bzz', age: 54},
+        {firstName: 'alireza', lastName: 'abed', age: 21},
       ]);
     });
 };

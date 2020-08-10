@@ -16,7 +16,9 @@ export default class Person extends Model{
             firstName : {type:'string'},
             lastName: {type:'string'},
             age: {type:'number'},
+            city : {type:'string'}
         }
     }
 
 }
+module.exports = Person;
