@@ -1,5 +1,5 @@
 import {Model} from 'objection'
-export default class Person extends Model{
+export class Person extends Model{
     //REQUIRED
     static tableName = 'persons';
 
@@ -21,4 +21,3 @@ export default class Person extends Model{
     }
 
 }
-module.exports = Person;

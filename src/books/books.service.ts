@@ -1,44 +1,33 @@
-import {HttpException, Injectable} from '@nestjs/common';
-import {BOOK} from '../models/Book';
+import { Inject, Injectable } from '@nestjs/common';
+import { ModelClass } from 'objection';
+import { Book } from '../database/models/Book'
+import { Person } from '../database/models/Person'
+
 
 @Injectable()
 export class BooksService {
-    books = BOOK;
-
-    getBooks(): Promise<any> {
-        return new Promise(resolve => {
-            resolve(this.books);
-        });
+    constructor(@Inject('Book') private model: ModelClass<Book>) { }
+    async getBooks(): Promise<any> {
+        return await this.model.query();
     }
 
-    getBook(bookID): Promise<any> {
+    async getBook(id: number): Promise<Book> {
+        return await this.model.query().findById(id);
+    }
+
+    async addBook(book): Promise<Book> {
+        return await this.model.query().insert({
+            title: book.t,
+            description: book.desc,
+            author: book.a,
+            price: book.p
+        });
+    }
+    async deleteBook(bookID): Promise<any> {
         let id = Number(bookID);
-        return new Promise(resolve => {
-            const book = this.books.find(book => book.id === id);
-            if (!book) {
-                throw new HttpException('Book does not exist!', 404);
-            }
-            resolve(book);
-        });
-    }
 
-    addBook(book): Promise<any> {
-        return new Promise(resolve => {
-            this.books.push(book);
-            resolve(this.books);
-        });
-    }
+        return await this.model.query().deleteById(bookID);
 
-    deleteBook(bookID): Promise<any> {
-        let id = Number(bookID);
-        return new Promise(resolve => {
-            let index = this.books.findIndex(book => book.id === id);
-            if (index === -1) {
-                throw new HttpException('Book does not exist!', 404);
-            }
-            this.books.splice(1, index);
-            resolve(this.books);
-        });
     }
 
 }

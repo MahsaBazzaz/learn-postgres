@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, Body, Query, Delete } from '@nestjs/common';
 import { BooksService } from './books.service';
-import { CreateBookDTO } from './dto/create-book.dto';
+import {Book} from '../database/models/Book'
+import {Person } from '../database/models/Person'
 
 @Controller('books')
 export class BooksController {
@@ -8,20 +9,20 @@ export class BooksController {
 
     @Get()
     async getBooks() {
-        const books = await this.booksService.getBooks();
+        let books = await this.booksService.getBooks();
         return books;
     }
 
     @Get(':bookID')
     async getBook(@Param('bookID') bookID) {
-        const book = await this.booksService.getBook(bookID);
+        let book = await this.booksService.getBook(bookID);
         return book;
     }
 
     @Post()
-    async addBook(@Body() createBookDTO: CreateBookDTO) {
-        const book = await this.booksService.addBook(createBookDTO);
-        return book;
+    async addBook(@Body() book) {
+        const b = await this.booksService.addBook(book);
+        return b;
     }
 
     @Delete()
