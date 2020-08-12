@@ -16,18 +16,19 @@ export class BooksService {
     }
 
     async addBook(book): Promise<Book> {
-        return await this.model.query().insert({
+        let ret = await this.model.query().insert({
             title: book.t,
             description: book.desc,
             author: book.a,
             price: book.p
         });
+        // let p = await this.model.relatedQuery('author').insert({ books: book.t });
+        return ret;
     }
     async deleteBook(bookID): Promise<any> {
-        let id = Number(bookID);
-
-        return await this.model.query().deleteById(bookID);
-
+        let ok =  await this.model.query().deleteById(bookID);
+        return ok;
     }
+    
 
 }

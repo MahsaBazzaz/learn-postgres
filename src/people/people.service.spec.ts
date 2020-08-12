@@ -1,23 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BooksService } from './books.service';
+import { PeopleService } from './people.service';
 import {Book } from '../database/models/Book';
 import {Person} from '../database/models/Person';
 
 describe('BooksService', () => {
-  let service: BooksService;
+  let service: PeopleService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [BooksService,Book,Person],
+      providers: [PeopleService,Book,Person],
     }).compile();
 
-    service = module.get<BooksService>(BooksService);
+    service = module.get<PeopleService>(PeopleService);
   });
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  // it('it should return authors',async(done) => {
-  //   let r = await service.getAuthorinfo(1);
+  // it.only('it should return books',async(done) => {
+  //   let r = await service.getBooksinfo(1);
   //   expect(r).toBeDefined;
   //   done();
   // })

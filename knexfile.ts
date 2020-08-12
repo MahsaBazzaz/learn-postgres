@@ -4,11 +4,11 @@ import * as Knex from 'knex';
 
 module.exports = {
   client: 'pg',
-  connection: 'postgres://postgres:mahsadb77@localhost:5432/mydatabase',
+  connection: 'postgres://postgres:mahsadb77@localhost:5432/bookstore',
   migrations: {
-    directory: '../database/migrations',
+    directory: './src/database/migrations',
   },
   seeds: {
-    directory: '../database/seeds',
+    directory: './src/database/seeds',
   },
 } as Knex.Config;

@@ -25,7 +25,7 @@ const providers = [
       useFactory: async () => {
         const knex = Knex({
           client: 'pg',
-          connection: 'postgres://postgres:mahsadb77@localhost:5432/mydatabase',
+          connection: 'postgres://postgres:mahsadb77@localhost:5432/bookstore',
           // connection: process.env.DATABASE_URL, // FIX can't read in on runtime
           debug: process.env.KNEX_DEBUG === 'true',
           ...knexSnakeCaseMappers()

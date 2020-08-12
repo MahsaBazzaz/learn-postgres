@@ -2,7 +2,6 @@
 // const connection = require('../knexfile')
 // const knexConnection = Knex(connection)
 // Model.knex(knexConnection)
-const {Person} =  require ('./Person');
 import { Model } from 'objection';
 
 export class Book extends Model {
@@ -27,15 +26,15 @@ export class Book extends Model {
         }
 
     };
-    // static relationMappings = {
-    //     author: {
-    //         relation: Model.HasOneRelation,
-    //         modelClass: Person,
-    //         join: {
-    //             from: 'books.author',
-    //             to: 'person.id'
-    //         }
-    //     }
-    // };
+    static relationMappings = {
+        author: {
+            relation: Model.HasManyRelation,
+            modelClass: __dirname + '/Person',
+            join: {
+                from: 'books.id',
+                to: 'persons.favorite'
+            }
+        }
+    };
 
 }

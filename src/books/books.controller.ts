@@ -1,7 +1,6 @@
 import { Controller, Get, Param, Post, Body, Query, Delete } from '@nestjs/common';
 import { BooksService } from './books.service';
 import {Book} from '../database/models/Book'
-import {Person } from '../database/models/Person'
 
 @Controller('books')
 export class BooksController {
@@ -30,4 +29,6 @@ export class BooksController {
         const books = await this.booksService.deleteBook(query.bookID);
         return books;
     }
+
+
 }
